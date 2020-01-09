@@ -1,0 +1,61 @@
+필요 프로그램
+
+-mymsql
+-node.js
+-npm
+-express-generator
+
+---------------------------------------------------------------------------------------
+게시판 데이터 베이스 생성 쿼리
+CREATE TABLE board(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    pw VARCHAR(100) NOT NULL,
+    content varchar(10000) NOT NULL,
+    writtenTime DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+
+샘플 데이터 생성
+INSERT INTO board (name, pw,content) VALUES ("qwer", "1234","안녕안녕"); 
+INSERT INTO board (name, pw,content) VALUES ("안녕", "1234","안녕?");
+
+
+//products 테이블 인코딩 정보
+show create table board;
+//products 테이블의 캐릭터 셋 변경
+alter table board convert to CHARACTER set utf8;
+
+--------------------------------------------------------------------------------------------
+서버 실행 명령어
+ls {웹 서버 파일 위치}
+npm start 
+
+--------------------------------------------------------------------------------------------
+
+프로젝트 파일 내 데이터베이스 연결 정보 입력 위치
+/routes/index.js
+
+// 커넥션 연결
+let client = mysql.createConnection({
+  user: "java",
+  password: "java",
+  database: "study"
+})
+
+ 
+---------------------------------------------------------------------------------------
+참고 사이트
+-node.js/express 설치 
+https://victorydntmd.tistory.com/23?category=677306
+
+
+-날씨 api (openweather)
+https://openweathermap.org
+
+openweather 예제
+https://namjackson.tistory.com/27
+
+
+
+

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .double-input .form-control {
+            width: 50%;
+            border-right-width: 0px;
+        }
+
+        .double-input .form-control:focus {
+            border-right-width: 1px;
+        }
+
+
+
+        #input_button:hover {
+            color: white;
+            background-color: #D8D8D8;
+
+        }
+
+        #big_div {
+
+            width: 100%;
+
+            margin: 0 auto;
+        }
+        .page-link{
+            background-color:aqua;
+        }
+    </style>
+
+    <title>Document</title>
+
+    <script>
+        function check_p(a) {
+            var ch = window.open('/checkpw/' + a, '_blank', ' height=300px, width=500px');
+
+        }
+
+    </script>
+
+
+</head>
+
+<body>
+    <div id="big_div">
+
+
+        <table class="table table-hover">
+
+            <tr style="background-color:#D8D8D8">
+                <th> 제목</th>
+                <th> 내용</th>
+                <th colspan="2">작성 날짜</th>
+
+            </tr>
+            <% for(let data of results) { %>
+
+            <form action="/delete/<%=data.id%>" +"?_method=DELETE" method="POST">
+
+                <tr>
+                    <td width="20%" text-overflow:clip; overflow:hidden; name="name"><%= data.name %></td>
+                    <td width="50%" text><%= data.content %></td>
+                    <td width="20%"><%= data.date %></td>
+                    <td width="10%"><input class="btn btn-light" id="input_button" type="button" value="삭제"
+                            onclick="check_p('<%=data.id%>')"></input></td>
+                </tr>
+
+
+            </form>
+            <% } %>
+        </table>
+          <%
+            var curSet = pasing.curSet
+            var endPage = pasing.endPage
+            var startPage = pasing.startPage
+            var totalSet = pasing.totalSet
+            var totalPage = pasing.totalPage
+            var page_list_size = pasing.page_list_size
+            var page_size = pasing.page_size
+            var curPage = pasing.curPage
+    %>
+    <div class="container">
+			<div class="row">
+				<div class="col" style="margin:0 auto; width:500px; height:80px;">
+<ul class="pagination">
+    <%
+        if(curSet > 1){
+        %>
+
+            <li value=(startPage -1)  class="page-item">
+                <a href='/create?id=<%= ( startPage - 1) %>' class="page-link">이전페이지</a>
+            </li>
+
+            <%
+        }
+    %>
+
+
+    <%
+        for(var i = startPage; i <= endPage; i++){
+        if(i > totalPage){break;}
+
+        if(i == curPage){
+        %>
+            <li value=<%= i %> class=''>
+                <a href='/create?id=<%= i %>' class="page-link" >
+                    <%= i %>
+                </a>
+            </li>
+
+            <%
+        }else{
+        %>
+
+    <li   class="page-item" value=<%= i %> class='active'>
+        <a href='/create?id=<%= i %>' class="page-link" >
+            <%= i %>
+        </a>
+    </li>
+
+
+            <%
+        }
+        %>
+
+        <%
+    }
+    %>
+
+    <%
+    if(curSet < totalSet){
+    %>
+    <li value=( endPage + 1) class="page-item">
+        <a href='/create?id=<%= ( endPage + 1) %>' class="page-link" >다음페이지</a>
+    </li>
+    <%
+        }
+        %>
+
+       </ul>
+
+           
+</div>
+</div>
+</div>
+
+
+       <div>
+        <form action="/create" method="POST">
+            <div class="input-group double-input">
+
+                <input class="form-control" type="text" name="name" placeholder="제목" maxlength="50" required>
+
+                <input class="form-control" type="text" name="pw" placeholder="비밀번호" maxlength="50" length:50 required>
+                <span class="input-group-btn">
+                    <button class="btn btn-outline-primary" type="submit">등록하기</button>
+                </span>
+
+
+            </div>
+            <textarea class="form-control col-sm-5" cols="50" rows="10" name="content" maxlength="3000" style="height: 150px;"
+                placeholder="내용을 입력하세요." required></textarea>
+
+
+
+        </form>
+       </div>
+    </div>
+
+  
+
+    </div>
+
+    <br>
+    <br>
+
+
+
+
+</body>
+
+</html>

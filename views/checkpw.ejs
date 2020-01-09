@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <style>
+        h1{
+
+            text-align: center;
+        }
+        body{
+            text-align: center; 
+
+        }
+        table{
+            width: 50%;
+            height:100px;
+            margin:auto;
+           
+
+        }
+        #boxa{
+            width:300px;
+            height:50px;
+            padding:30px 30px 50px 30px;
+            font-size:20px;
+
+            margin: 0 auto;
+        }
+        #mform{
+
+            padding:30px 30px 50px 30px;
+
+        }
+        
+        
+    </style>
+    <script>
+        function refreshParent() 
+{
+    window.opener.location.reload(true);
+}
+    </script>
+</head>
+<body onunload="javascript:refreshParent()">
+<h1>비밀번호 확인</h1>
+<hr>
+    
+
+<form id="mform" action="/delete/<%=results%>"+"?_method=DELETE" method="POST">
+    <table id="mtable">
+        <tr>
+            <td><input class="form-control"  type="text" name="check_pw" placeholder="비밀번호를 입력하세요."></td>
+        </tr>
+        <tr>
+             <td>
+                    <input class="btn btn-light"  type="submit" value="전송">   
+                    <input  class="btn btn-light" type="button" value="닫기" onclick="window.close();">                   
+             </td>   
+        </tr>
+
+       
+     
+    </table>
+
+    <script>
+            var pw_ch="<%=results %>";
+                if(pw_ch=="true"){
+                    window.close(this);
+                }else if(pw_ch=="false"){
+                    var temp = document.getElementById("mform");
+                    var butt = document.querySelector("body > form > table");
+                
+                    butt.style.display="none";
+
+                  
+                    document.write("<div id='boxa'>비밀번호가 틀렸습니다<br><br></div>");
+                    document.write(" <input   class='btn btn-light' type='button' value='닫기' onclick='window.close();'>");
+
+         
+                }
+        </script>
+ 
+    
+<!-- 
+    <%  { %>
+       
+        <span><%=results %></span>
+     <% } %> -->
+
+    
+
+</form>
+
+
+</body>
+</html>

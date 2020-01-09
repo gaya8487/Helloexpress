@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Index</title>
+
+  <!-- Custom fonts for this theme -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="css/freelancer.min.css" rel="stylesheet">
+  <link href="css/weather-icons.min.css" rel="stylesheet">
+  <%  { %>
+  <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'> </script>
+  <%  } %>
+
+
+  <%{%>
+<script>
+
+  var url; /*URL*/
+  var url2;
+  var cityname;
+  var body;
+  var headerStatus;
+
+
+
+</script>
+
+    <%}%>
+
+
+    <style>
+   
+
+        #weaCurrentDiv {
+            float: left;
+            height: 100%;
+            width: 45%;
+            
+        }
+        #weaCurrent {
+            float: left;
+            height: 80%;
+            width: 100%;
+            
+        }
+        #time-result {
+            float: left;
+            height: 20%;
+            width: 100%;
+            
+        }
+   
+        #center {
+
+            height: 100%;
+            width: 55%;
+      
+            float: right;
+          
+          
+        }
+
+        #tempHum {
+            float: left;
+            height: 100%;
+            width: 50%;
+         
+
+        }
+
+        #weaDesDiv {
+            float: left;
+            height: 100%;
+            width: 50%;
+      
+        }
+
+        #centerup {
+            width: 100%;
+            height: 50%;
+   
+        }
+
+
+        #centerdown {
+            width: 100%;
+            height:50%;
+    
+        }
+
+        #weaWindiv {
+            float: left;
+            height: 100%;
+            width: 50%;
+
+        }
+
+        #weaClouddiv {
+            float: left;
+            height: 100%;
+            width: 50%;
+
+        }
+
+        #bigbox {
+            width: 100%;
+            height: 50%;
+
+        }
+
+        #forcast {
+
+            width: 100%;
+            height: 100%;
+
+            background: #f2af;
+
+        }
+
+        #a1 {
+            float: left;
+
+            width: 20%;
+            height: 100%;
+
+            background-color: slategrey;
+
+          
+        }
+
+        #a2 {
+            float: left;
+            width: 20%;
+            height: 100%;
+
+            background-color: darkgray;
+
+        
+
+        }
+
+        #a3 {
+            float: left;
+            width: 20%;
+            height: 100%;
+
+            
+            background-color: slategrey;
+ 
+
+        }
+
+        #a4 {
+            float: left;
+            width: 20%;
+            height: 100%;
+
+            background-color: darkgray;
+
+        }
+
+
+        #a5 {
+            float: left;
+            width: 20%;
+            height: 100%;
+           
+            background-color: slategrey;
+   
+        }
+
+        #weaInfo{
+          font-weight: bold;
+          font-size:20px;
+          margin-bottom:30px;
+        
+
+        }
+      </style>
+
+</head>
+
+<body id="page-top">
+
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Weather</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Other City</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">방명록</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+  
+
+      <!-- Masthead Avatar Image -->
+      <!-- <img class="masthead-avatar mb-5" src="img/avataaars.svg" alt=""> -->
+      <!-- <div id="openweathermap-widget-15"></div> -->
+
+
+      <!--무료 api
+        현재 날씨,
+         5일 /3시간 예보--->
+
+      <!-- Masthead Heading -->
+      <!-- <h1 class="masthead-heading text-uppercase mb-0">cityname</h1> 현재위치--->
+      
+       <div style="margin-bottom:20px;">
+      
+      <!-- <span  id="time-result" style='font-size:50px; font-weight: bold'></span> 오늘 날짜 -->
+
+      <h1 id="mycity" style='font-size:50px; font-weight: bold' >도시 이름 </h1>
+      <!-- <span  style= 'font-size:50px; margin-left: 20px;'></span>  -->
+
+        </div>
+      <div id="weaInfo" style='width: 80%; height:  345px;'>
+     
+
+        <div id="bigbox" style="background-color: cadetblue; border-radius: 30px 30px 0px 0px;">
+            <!-- <div id="header"> header </div>  -->
+            <div id="weaCurrentDiv">
+                <div  id="time-result" style='font-size:30px; padding:10px; font-weight: bold'></div> <!--오늘 날짜 -->
+              <div id="weaCurrent" style="font-size:80px; padding:8px 0"> <i> </i></div><!--현재 날씨-->
+            </div>
+            <div id="center">
+                <div id="centerup">
+
+                    <div>
+                        <div id="weaDesDiv" >
+                           <div id="weaDes" style="padding:30px" > </div>
+                           <div  style="padding:8px" ><i class="wi wi-thermometer-exterior" style="font-size:20px"></i> <span id="weaTemp"> </span> </div>
+                        
+                        </div><!--상세 설명-->
+                        <div id="tempHum">
+                            <div style="padding:8px"> <i class="wi wi-thermometer-exterior" style="font-size:20px"></i><span style="color: skyblue;" id="weaTempMin"> </span>/<span id="weaTempMax" style="color:tomato"> </span></div><!--온도-->
+                            <div style="padding:8px"><i class="wi wi-humidity"  style="font-size:20px"></i>  <span id="weaHu"> </span></div><!--습도-->
+                        </div>
+                    </div>
+                </div>
+                <div id="centerdown">
+                    <div>
+                        <div id="weaWindiv"  style="padding:30px" ><i class="wi wi-strong-wind"  style="font-size:20px"></i><span id="weaWin" ></span> </div><!--바람-->
+                        <div id="weaClouddiv" style="padding:30px"><i class="wi wi-cloudy"  style="font-size:20px"></i><span id="weaCloud" > </span></div><!--구름-->
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="forecast" style="font-size:20px;">
+          <div>
+            <div id="a1" style="border-radius: 0 0 0 30px;">
+              <div id="date1" style="padding:15px;"> </div>
+              <div id="weaCast1" style="padding:30px; font-size:40px;">
+                <li></li>
+              </div>
+        
+            </div>
+            <!--1예보-->
+            <div id="a2">
+              <div id="date2" style="padding:15px;"> </div>
+              <div id="weaCast2" style="padding:30px; font-size:40px;">
+                <li></li>
+              </div>
+        
+            </div>
+            <!--2예보-->
+            <div id="a3">
+              <div id="date3" style="padding:15px;"> </div>
+              <div id="weaCast3" style="padding:30px; font-size:40px;">
+                <li></li>
+              </div>
+        
+            </div>
+            <!--3예보-->
+            <div id="a4">
+              <div id="date4" style="padding:15px;"></div>
+              <div id="weaCast4" style="padding:30px; font-size:40px;">
+                <li></li>
+              </div>
+        
+            </div>
+            <!--4예보-->
+            <div id="a5" style="border-radius: 0 0 30px 0px;" >
+              <div id="date5" style="padding:15px; "></div>
+              <div id="weaCast5" style="padding:30px; font-size:40px;">
+                <li></li>
+              </div>
+        
+            </div>
+            <!--5예보-->
+        
+          </div>
+        
+        </div>
+
+
+      
+      </div style="width:100%; height:50px">
+
+
+
+      <div class="input-group mb-3" style="width:600px; padding-top:30px">
+
+        <input class="form-control"   onkeypress="if( event.keyCode==13 ){weatherInput();}" id="myinput" type="text" name="name" placeholder="도시 이름(영어) 검색" maxlength="30" required>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" style="color:snow; background-color: slategrey; border-color: slategrey;" type="submit"  onclick="weatherInput()" >검색</button>
+       </div>
+
+
+     </div>
+
+      <%  { %>
+      <script>
+        var currentWeather;
+        var currentWeather2;
+        var currentWeather3;
+        var forequestWeather;
+        
+    
+
+
+        cityname='Daejeon';
+      
+           function weatherInfo(city,flag) {
+             var mflag=flag;
+
+          //현재 날씨
+            function request1(param) {
+                  return new Promise(function(resolve, reject) {
+
+          var xhr = new  XMLHttpRequest();
+            url = 'http://api.openweathermap.org/data/2.5/weather'; /*URL 현재 날씨*/
+            var queryParams;
+
+            queryParams = '?' + encodeURIComponent('q') + '=' + encodeURIComponent(city) ; //지역
+            queryParams += '&' + encodeURIComponent('appid') + '=' + '49239908ed22f295c06018cdf3995301'+"&units=metric" //appid
+
+            // console.log(url + queryParams);
+
+         
+                xhr.overrideMimeType("json");
+                xhr.open('GET', url + queryParams, true);
+                xhr.onreadystatechange = function () {
+
+                  if (this.readyState == 4) {
+                    if(this.status==200){
+                      resolve(JSON.parse(xhr.responseText));
+                     }
+                      else {
+                        reject('Error: ' + xhr.status);
+                        alert('에러가 발생했습니다');
+                    }
+
+                  }
+
+                };
+
+                xhr.send('');
+                
+
+                  });
+              }
+
+
+              //예보 날씨
+            function request2(param) {
+                  return new Promise(function(resolve, reject) {
+
+                    url2 = 'http://api.openweathermap.org/data/2.5/forecast'; //예보
+
+                      var xhr = new XMLHttpRequest();
+                      queryParams = '?' + encodeURIComponent('q') + '=' + encodeURIComponent(city); //지역
+                      queryParams += '&' + encodeURIComponent('appid') + '=' + '49239908ed22f295c06018cdf3995301' + "&units=metric"  //appid
+
+                      // console.log(url2 + queryParams);
+
+                      //예보 날씨
+                      xhr.overrideMimeType("json");
+                      xhr.open('GET', url2 + queryParams, true);
+                      xhr.onreadystatechange = function () {
+
+                        if (this.readyState == 4) {
+                          if(this.status==200){
+                            resolve(JSON.parse(xhr.responseText));
+                            
+                              // forequestWeather =  JSON.parse(this.responseText);
+                          
+                          }else {
+                              reject('Error: ' + xhr.status);
+                          }
+
+                        }
+                      };
+
+                      xhr.send('');
+                  });
+              }
+
+            //날씨 정보 받으면
+              Promise.resolve()
+              .then(request1)
+              .catch(error => console.log(error) )
+              .then(result=>{
+                //현재 날씨 정보 받으면
+
+  
+                  //변수에 너어주기
+                    if(mflag==1){
+
+                      currentWeather=result;
+
+                    }else if(mflag==2){
+
+                        currentWeather2=result;
+                    }else if(mflag==3){
+                        currentWeather3=result;
+                        
+                    }   
+
+
+                  //날씨 이미지가 이미지 리스트에 없는 경우 (undefined)
+                  //프로미스에서 에러로 처리해 버림 -> 화면 표시안됨
+
+                  // console.log(result);
+       
+                  changeCurrentInfo(currentWeather);  //메인화면에  정보를 붙이기 (현재 정보)
+                  otherCountryInfo(currentWeather2,2); //other country 정보 붙이기
+                  otherCountryInfo(currentWeather3,3);
+                      
+
+              })
+              .then(request2)
+              .catch(error => console.log(error))
+              .then(result => {
+                //예보 정보 받으면
+                //변수에 너어주기
+
+                  forequestWeather=result;
+
+
+                  //정보 받으면 붙여주기
+      
+                  changeForcastInfo('day1',forequestWeather); //메인화면(아래)에  정보를 붙이기 (예보)
+                  changeForcastInfo('day2',forequestWeather);
+                  changeForcastInfo('day3',forequestWeather);
+                  changeForcastInfo('day4',forequestWeather);
+                  changeForcastInfo('day5',forequestWeather);
+
+
+              });
+
+          }
+
+              function weImage(weather){
+
+                // console.log(weather);
+
+                var curentWeatherImage;
+                var forImage = {
+                  Rain: { imageName: 'wi wi-owm-504'},
+                  Snow: { imageName: 'wi wi-owm-621'},
+                  Smoke: { imageName: 'wi wi-owm-711'},
+                  Dust: { imageName: 'wi wi-owm-761'},
+                  Cloudy: { imageName: 'wi wi-owm-804'},
+                  Hot: { imageName: 'wi wi-owm-904'},
+                  Thunderstorm: { imageName: 'wi wi-owm-200'},
+                  Lightning:{imageName: 'wi wi-owm-210:'},
+                  Showers:{imageName: 'wi wi-owm-313'},
+                  Windy:{imageName: 'wi wi-owm-905'},
+                  Drizzle:{imageName: 'wi wi-owm-302'},
+                  Sunny:{imageName: 'wi wi-day-sunny'},
+                  Clear:{imageName: 'wi wi-day-sunny'},
+                  Clouds: { imageName: 'wi wi-owm-804'},
+                  Mist:{imageName: 'wi wi-owm-741'},
+                  Haze:{imageName: 'wi wi-yahoo-20'}
+                }
+
+                if(forImage[weather]!=null){
+
+                  if(forImage[weather].imageName!=null || typeof (forImage[weather].imageName)!= "undefined"){
+                    curentWeatherImage=forImage[weather].imageName;
+                    return curentWeatherImage;
+
+                  }
+                  // else if(forImage[weather].imageName==null || typeof (forImage[weather].imageName)== "undefined"){
+                  //   return curentWeatherImage= '0';
+                  // }
+              }else{
+               return  curentWeatherImage= '0';
+
+              }
+
+              }
+
+              function otherCountryInfo(info,smallboxnum) {   //메인화면에  정보를 붙이기
+                // console.log("otherCountryInfo" + info);
+
+                // document.getElementById('mycity'+smallboxnum).innerHTML = info.name;
+                document.getElementById('weaTemp'+smallboxnum).innerHTML = info.main.temp + "℃";
+                document.getElementById('weaTempMax'+smallboxnum).innerHTML = info.main.temp_max + "℃";
+                document.getElementById('weaTempMin'+smallboxnum).innerHTML = info.main.temp_min + "℃";
+                document.getElementById('weaHu'+smallboxnum).innerHTML = info.main.humidity + "%";
+                document.getElementById('weaDes'+smallboxnum).innerHTML = info.weather[0].description;
+                document.getElementById('weaWin'+smallboxnum).innerHTML = info.wind.speed + "m/s";// 바람
+
+                //  document.getElementById('weaCurrent').innerText = currentWeather.weather[0].main;
+                
+                var currentImage = "";
+                var weather=info.weather[0].main;
+
+                currentImage=weImage(weather); // 날씨에 맞는 이미지 있나 확인
+
+                //  console.log(currentImage);
+
+                if(typeof currentImage == "undefined" || currentImage == null || currentImage == ""||currentImage=='0'){
+                  document.getElementById('weaCurrent'+smallboxnum).innerText = weather;
+
+                }else{
+                  document.getElementById('weaCurrent'+smallboxnum).children[0].className=currentImage;
+
+                }
+      
+               }
+
+               function changeCurrentInfo(info) {   //메인화면에  정보를 붙이기
+                // console.log("changeCurrentInfo" + info);
+
+                document.getElementById('mycity').innerHTML = info.name;
+                document.getElementById('weaTemp').innerHTML = info.main.temp + "℃";
+                document.getElementById('weaTempMax').innerHTML = info.main.temp_max + "℃";
+                document.getElementById('weaTempMin').innerHTML = info.main.temp_min + "℃";
+                document.getElementById('weaHu').innerHTML = info.main.humidity + "%";
+                document.getElementById('weaDes').innerHTML = info.weather[0].description;
+                document.getElementById('weaWin').innerHTML = info.wind.speed + "m/s";// 바람
+                document.getElementById('weaCloud').innerHTML = info.clouds.all + "%";
+
+                //  document.getElementById('weaCurrent').innerText = currentWeather.weather[0].main;
+                
+                var currentImage = "";
+                var weather=info.weather[0].main;
+
+                currentImage=weImage(weather); // 날씨에 맞는 이미지 있나 확인
+
+                  // console.log(currentImage);
+
+                if(typeof currentImage == "undefined" || currentImage == null || currentImage == ""||currentImage=='0'){
+                  document.getElementById('weaCurrent').innerText = weather;
+
+                }else{
+                  document.getElementById('weaCurrent').children[0].className=currentImage;
+
+                }
+      
+               }
+
+
+              function changeForcastInfo(f_day,info) { 
+                // console.log("f_day :" +f_day +"  "+ "info"+info);
+                var forcast = {
+                  day1: { name: '1', list: 7, Image: "" },
+                  day2: { name: '2', list: 15, Image: "" },
+                  day3: { name: '3', list: 23, Image: "" },
+                  day4: { name: '4', list: 31, Image: "" },
+                  day5: { name: '5', list: 39, Image: "" }
+                }
+  
+                document.getElementById('date'+forcast[f_day].name).innerHTML = (info['list'][forcast[f_day].list]['dt_txt']).substring(0,10);
+
+
+                forcastImage=forcast[f_day].Image;
+                var forcastWeather= info['list'][forcast[f_day].list]['weather'][0]['main'];
+
+                forcastImage=weImage(forcastWeather); // 날씨에 맞는 이미지 있나 확인
+
+
+               if(typeof forcastImage == "undefined" || forcastImage == null || forcastImage == "" || forcastImage == '0'){ // forcastImage undefined null ""이면  이름으로
+
+                  document.getElementById('weaCast'+forcast[f_day].name).innerText =forcastWeather;
+
+                }else{// forcastImage undefined null ""이 아니면  이미지로
+
+                  document.getElementById('weaCast'+forcast[f_day].name).children[0].className = forcastImage;
+                }
+
+                
+
+
+                if (info['list'][forcast[f_day].list]['weather'][0]['main'] == 'Rain') {
+                  forcastImage = 'wi wi-owm-504';
+                } else if (info['list'][forcast[f_day].list]['weather'][0]['main'] == 'Drizzle') {
+
+                  forcastImage = 'wi wi-owm-504';
+                } 
+                
+                if(typeof forcastImage == "undefined" || forcastImage == null || forcastImage == "" || forcastImage == '0'){ // forcastImage undefined null ""이면  이름으로
+
+                  document.getElementById('weaCast'+forcast[f_day].name).innerText = info['list'][forcast[f_day].list]['weather'][0]['main'];
+
+                }else{// forcastImage undefined null ""이 아니면  이미지로
+
+                  document.getElementById('weaCast'+forcast[f_day].name).children[0].className = forcastImage;
+                }
+
+                
+
+              }
+
+
+     
+         weatherInfo(cityname,1); //cityname으로  정보 가져옴
+         weatherInfo('Busan',2); //cityname으로  정보 가져옴 
+        weatherInfo('Sydney',3); //cityname으로  정보 가져옴
+          window.onload = function(){
+                           
+          var d= new Date();
+          var currentDate=d.getFullYear()+"-"+((d.getMonth()+1)<10?"0"+(d.getMonth()+1):(d.getMonth()+1))+"-"+((d.getDate() < 10)? "0"+d.getDate():d.getDate());
+
+            document.getElementById('time-result').innerHTML=currentDate;
+  
+            // changeCurrentInfo(currentWeather);  //메인화면에  정보를 붙이기 (현재 정보)
+            
+            // changeForcastInfo('day1',forequestWeather); //메인화면(아래)에  정보를 붙이기 (예보)
+            // changeForcastInfo('day2',forequestWeather);
+            // changeForcastInfo('day3',forequestWeather);
+            // changeForcastInfo('day4',forequestWeather);
+            // changeForcastInfo('day5',forequestWeather);
+
+
+            // otherCountryInfo(currentWeather2,2); //other country 정보 붙이기
+            // otherCountryInfo(currentWeather3,3);
+
+
+          } 
+
+          function weatherInput(){  //인풋창에서 입력받은 값을 붙임
+            city = document.getElementById('myinput').value;
+
+            weatherInfo(city,1);  //인풋창에서 입력받은 값
+            // console.log(currentWeather);
+
+            changeCurrentInfo(currentWeather);
+
+            changeForcastInfo('day1',forequestWeather); //메인화면(아래)에  정보를 붙이기 (예보)
+            changeForcastInfo('day2',forequestWeather);
+            changeForcastInfo('day3',forequestWeather);
+            changeForcastInfo('day4',forequestWeather);
+            changeForcastInfo('day5',forequestWeather);
+
+
+           document.getElementById('myinput').value=null;
+
+          }
+
+
+        </script>
+
+      
+      <%  } %>
+
+
+    </div>
+  </header>
+
+  <!-- Portfolio Section -->
+  <section class="page-section portfolio" id="portfolio">
+    <div class="container">
+
+      <!-- Portfolio Section Heading -->
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Other City</h2>
+
+      <!-- Icon Divider -->
+      <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+
+      <!-- Portfolio Grid Items -->
+      <div class="row">
+
+        <!-- Portfolio Item 1 -->
+        <!-- <div class="col-md-6 col-lg-4"> -->
+        <div class="" style="flex:0 0 50%; max-width: 50%; background-color:#4F86C6; border-radius: 30px;">
+        
+          <div style="background-color:lightpink;">
+            <div class="">
+              <div class="portfolio-item-caption-content text-center text-white">
+                <!-- <i class="fas fa-plus fa-3x"></i> -->
+              </div>
+            </div>
+            <div id="smallbox2" style="background-color: #4F86C6; width: 100%; height: 100%;">
+              <!-- <div id="header"> header </div>  -->
+              <div id="weaCurrentDiv2" style="float:left; width: 40%; text-align: center; height: 20%;  ">
+                <div   style="float:left; width: 100%; font-weight:bold; font-size:20px; margin:5px; "><p>Busan</p></div>
+                <!--오늘 날짜 -->
+                <div id="weaCurrent2" style="font-size:60px; padding:8px 0"> <i> </i></div>
+                <!--현재 날씨-->
+              </div>
+              <div id="center2" style="height: 100%; width:60%; float:right;">
+                <div id="centerup2" style="height: 50%; width:100%;">
+                    <div id="weaDesDiv2" style="width: 50%; height: 50%; float: left;">
+                      <div id="weaDes2" style="padding:20px"> </div>
+                      <div style="padding:12px"><i class="wi wi-thermometer-exterior" style="font-size:20px"></i> <span id="weaTemp2"> </span></div>
+        
+                    </div>
+               
+                    <!--상세 설명-->
+                    <div id="tempHum2" style="width: 50%; height: 100%; float: left;">
+                      <div style="padding-top:18px"> <i class="wi wi-thermometer-exterior" style="font-size:20px"></i><span
+                          style="color: skyblue;" id="weaTempMin2"> </span>/<span id="weaTempMax2" style="color:tomato"> </span>
+                      </div>
+                      <!--온도-->
+                      <div style="padding:15px"><i class="wi wi-humidity" style="font-size:20px"></i> <span id="weaHu2"> </span></div>
+                      <!--습도-->
+                    </div>
+                  </div>
+  
+                <div id="centerdown2" style="width: 100%; height: 50%;">
+                    <i class="wi wi-strong-wind" style="font-size:20px"></i>
+                    <span id="weaWin2"></span> 
+              
+                </div>
+              
+              
+              
+              
+              </div>
+        
+            </div>
+          </div>
+        </div>
+
+        <!-- Portfolio Item 2 -->
+        <!-- <div class="col-md-6 col-lg-4"> -->
+            <div class="" style="flex:0 0 50%; max-width: 50%; background-color:#4FB0C6;border-radius: 30px;">
+        
+                <div style="background-color:deepskyblue;">
+                  <div class="">
+                    <div class="portfolio-item-caption-content text-center text-white">
+                      <!-- <i class="fas fa-plus fa-3x"></i> -->
+                    </div>
+                  </div>
+                  <div id="smallbox3" style="background-color: cadetblue; width: 100%; height: 100%;">
+                    <!-- <div id="header"> header </div>  -->
+                    <div id="weaCurrentDiv3" style="float:left; width: 40%; text-align: center; height: 20%;  ">
+                      <div   style="float:left; width: 100%; font-weight:bold; font-size:20px; margin:5px; "><p>Sydney</p></div>
+                      <!--오늘 날짜 -->
+                      <div id="weaCurrent3" style="font-size:60px; padding:8px 0"> <i> </i></div>
+                      <!--현재 날씨-->
+                    </div>
+                    <div id="center3" style="height: 100%; width:60%; float:right;">
+                      <div id="centerup3" style="height: 50%; width:100%;">
+                          <div id="weaDesDiv3" style="width: 50%; height: 50%; float: left;">
+                            <div id="weaDes3" style="padding:20px"> </div>
+                            <div style="padding:12px"><i class="wi wi-thermometer-exterior" style="font-size:20px"></i> <span id="weaTemp3"> </span></div>
+              
+                          </div>
+                     
+                          <!--상세 설명-->
+                          <div id="tempHum2" style="width: 50%; height: 100%; float: left;">
+                            <div style="padding-top:18px"> <i class="wi wi-thermometer-exterior" style="font-size:20px"></i><span
+                                style="color: skyblue;" id="weaTempMin3"> </span>/<span id="weaTempMax3" style="color:tomato"> </span>
+                            </div>
+                            <!--온도-->
+                            <div style="padding:15px"><i class="wi wi-humidity" style="font-size:20px"></i> <span id="weaHu3"> </span></div>
+                            <!--습도-->
+                          </div>
+                        </div>
+        
+                      <div id="centerdown3" style="width: 100%; height: 50%;">
+                          <i class="wi wi-strong-wind" style="font-size:20px"></i>
+                          <span id="weaWin3"></span> 
+                    
+                      </div>
+                    
+                    
+                    
+                    
+                    </div>
+              
+                  </div>
+                </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+  </section>
+
+
+  <!-- Contact Section -->
+  <section class="page-section" id="contact" style="padding: 3rem 0;">
+    <div class="container">
+
+
+      <!-- Contact Section Heading -->
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">방명록</h2>
+      <br>
+      <iframe src="/create?id=1" style="width:100%; height:100vh;border:none" scrolling='no'>
+
+      </iframe>
+    </div>
+
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <div class="row">
+
+        <!-- Footer Location -->
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <h4 class="text-uppercase mb-4">Location</h4>
+          <p class="lead mb-0">2215 John Daniel Drive
+            <br>Clark, MO 65243</p>
+        </div>
+
+        <!-- Footer Social Icons -->
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <h4 class="text-uppercase mb-4">Around the Web</h4>
+          <a class="btn btn-outline-light btn-social mx-1" href="#">
+            <i class="fab fa-fw fa-facebook-f"></i>
+          </a>
+          <a class="btn btn-outline-light btn-social mx-1" href="#">
+            <i class="fab fa-fw fa-twitter"></i>
+          </a>
+          <a class="btn btn-outline-light btn-social mx-1" href="#">
+            <i class="fab fa-fw fa-linkedin-in"></i>
+          </a>
+          <a class="btn btn-outline-light btn-social mx-1" href="#">
+            <i class="fab fa-fw fa-dribbble"></i>
+          </a>
+        </div>
+
+        <!-- Footer About Text -->
+        <div class="col-lg-4">
+          <h4 class="text-uppercase mb-4">About Freelancer</h4>
+          <p class="lead mb-0">Freelance is a free to use, MIT licensed Bootstrap theme created by
+            <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Copyright Section -->
+  <section class="copyright py-4 text-center text-white">
+    <div class="container">
+      <small>Copyright &copy; Your Website 2019</small>
+    </div>
+  </section>
+
+  <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+  <div class="scroll-to-top d-lg-none position-fixed ">
+    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+
+  <!-- Portfolio Modals -->
+
+  <!-- Portfolio Modal 1 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog"
+    aria-labelledby="portfolioModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Log Cabin</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/cabin.png" alt="">
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam
+                  nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae?
+                  Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Modal 2 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog"
+    aria-labelledby="portfolioModal2Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Tasty Cake</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/cake.png" alt="">
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam
+                  nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae?
+                  Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Modal 3 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog"
+    aria-labelledby="portfolioModal3Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Circus Tent</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/circus.png" alt="">
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam
+                  nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae?
+                  Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Modal 4 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog"
+    aria-labelledby="portfolioModal4Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Controller</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/game.png" alt="">
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam
+                  nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae?
+                  Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Modal 5 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog"
+    aria-labelledby="portfolioModal5Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Locked Safe</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/safe.png" alt="">
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam
+                  nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae?
+                  Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Modal 6 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog"
+    aria-labelledby="portfolioModal6Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Submarine</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/submarine.png" alt="">
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam
+                  nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae?
+                  Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <%  { %>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <% } %>
+
+  <!-- Plugin JavaScript -->
+
+  <%  { %>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <% } %>
+
+  <!-- Contact Form JavaScript -->
+  <%  { %>
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
+  <% } %>
+
+  <!-- Custom scripts for this template -->
+  <%  { %>
+  <script src="js/freelancer.min.js"></script>
+  <% } %>
+
+</body>
+
+</html>
