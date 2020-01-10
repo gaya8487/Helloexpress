@@ -1,10 +1,14 @@
 var express = require('express');
 var app = express();
+
+
 var router = express.Router();
 const mysql = require("mysql");   // mysql 모듈 require
 mysql.createConnection({multipleStatements: true});
 
 var fs = require('fs'); //파일 로드 사용
+
+
 
 
 // const xhr = new XMLHttpRequest();
