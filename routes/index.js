@@ -122,7 +122,8 @@ router.get('/create', function (req, res, next) {
   // client.query("select count(*) cnt from board", function(err, result, fields) {
   //   totalPageCount = result[0].cnt;
   // });
-
+  console.log("----------------------------------");
+  console.log("client=" + client);  
 
   client.query(sql2, function (err, result, fields) {
     if (err) {
