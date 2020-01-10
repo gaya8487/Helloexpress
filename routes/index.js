@@ -2,8 +2,11 @@ var express = require('express');
 var app = express();
 
 
+
 var router = express.Router();
 const mysql = require("mysql");   // mysql 모듈 require
+require('dotenv').config(); //환경변수 모듈
+
 mysql.createConnection({multipleStatements: true});
 
 var fs = require('fs'); //파일 로드 사용
@@ -60,11 +63,20 @@ router.get('/checkpw/:id', function (req, res, next) {
 
 });
 
+// // 커넥션 연결
+// let client = mysql.createConnection({
+//   user: "java",
+//   password: "java",
+//   database: "study"
+// })
+
 // 커넥션 연결
 let client = mysql.createConnection({
-  user: "java",
-  password: "java",
-  database: "study"
+  user: (process.env.DB_USER),
+  password: (process.env.DB_PASS),
+  database: (process.env.DB_NAME),
+  host:(process.env.DB_HOST)
+
 })
 
 module.exports = router;
