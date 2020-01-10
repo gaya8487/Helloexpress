@@ -71,13 +71,28 @@ router.get('/checkpw/:id', function (req, res, next) {
 // })
 
 // 커넥션 연결
-let client = mysql.createConnection({
-  user: (process.env.DB_USER),
-  password: (process.env.DB_PASS),
-  database: (process.env.DB_NAME),
-  host:(process.env.DB_HOST)
+// let client = mysql.createConnection({
+//   user: (process.env.DB_USER),
+//   password: (process.env.DB_PASS),
+//   database: (process.env.DB_NAME),
+//   host:(process.env.DB_HOST)
 
+// })
+
+// 커넥션 연결
+let client = mysql.createConnection({
+  host:"us-cdbr-iron-east-05.cleardb.net",
+  user: "b170bade02e080",
+  password: "2a80d1dc",
+  database: "heroku_54ab43160647595"
 })
+
+
+// DB_NAME=heroku_54ab43160647595
+// DB_USER=b170bade02e080
+// DB_PASS=2a80d1dc
+// DB_HOST=us-cdbr-iron-east-05.cleardb.net
+
 
 module.exports = router;
 
@@ -128,6 +143,7 @@ router.get('/create', function (req, res, next) {
 
   client.query(sql2, function (err, result, fields) {
     if (err) {
+      console.log("client query error");
       console.log(err);
       console.log("쿼리문에 오류가 있습니다.");
     }
