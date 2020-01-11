@@ -63,35 +63,17 @@ router.get('/checkpw/:id', function (req, res, next) {
 
 });
 
-// // 커넥션 연결
-// let client = mysql.createConnection({
-//   user: "java",
-//   password: "java",
-//   database: "study"
-// })
 
-// 커넥션 연결
-// let client = mysql.createConnection({
-//   user: (process.env.DB_USER),
-//   password: (process.env.DB_PASS),
-//   database: (process.env.DB_NAME),
-//   host:(process.env.DB_HOST)
 
-// })
-
-// 커넥션 연결
+//커넥션 연결 환경변수
 let client = mysql.createConnection({
-  host:"us-cdbr-iron-east-05.cleardb.net",
-  user: "b170bade02e080",
-  password: "2a80d1dc",
-  database: "heroku_54ab43160647595"
+  user: (process.env.DB_USER),
+  password: (process.env.DB_PASS),
+  database: (process.env.DB_NAME),
+  host:(process.env.DB_HOST)
+
 })
 
-
-// DB_NAME=heroku_54ab43160647595
-// DB_USER=b170bade02e080
-// DB_PASS=2a80d1dc
-// DB_HOST=us-cdbr-iron-east-05.cleardb.net
 
 
 module.exports = router;
