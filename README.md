@@ -1,9 +1,8 @@
 # Helloexpress
 
-nodejs express mysql
+Nodejs Express Mysql Heroku
 
 날씨 정보 + 게시판 웹 사이트  
-
 https://afternoon-waters-32927.herokuapp.com/  
 
 #
