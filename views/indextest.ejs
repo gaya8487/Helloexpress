@@ -40,6 +40,7 @@
 
 
 
+
 </script>
 
     <%}%>
@@ -354,8 +355,9 @@
         var forequestWeather;
         
     
-
-
+        var appid= "<%=appid %>";
+        
+      
         cityname='Daejeon';
       
            function weatherInfo(city,flag) {
@@ -370,7 +372,7 @@
             var queryParams;
 
             queryParams = '?' + encodeURIComponent('q') + '=' + encodeURIComponent(city) ; //지역
-            queryParams += '&' + encodeURIComponent('appid') + '=' + '49239908ed22f295c06018cdf3995301'+"&units=metric" //appid
+            queryParams += '&' + encodeURIComponent('appid') + '=' + appid+"&units=metric" //appid
 
             // console.log(url + queryParams);
 
@@ -407,7 +409,7 @@
 
                       var xhr = new XMLHttpRequest();
                       queryParams = '?' + encodeURIComponent('q') + '=' + encodeURIComponent(city); //지역
-                      queryParams += '&' + encodeURIComponent('appid') + '=' + '49239908ed22f295c06018cdf3995301' + "&units=metric"  //appid
+                      queryParams += '&' + encodeURIComponent('appid') + '=' + appid + "&units=metric"  //appid
 
                       // console.log(url2 + queryParams);
 

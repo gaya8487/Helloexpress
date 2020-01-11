@@ -36,10 +36,16 @@ var queryParams;
 //  });
 
  router.get('/', function (req, res, next) {
-
+  appId=process.env.APP_ID;
+  
   res.render('indextest', {
 
+    appid:appId
+    
+
   });
+
+ 
 
 });
 
